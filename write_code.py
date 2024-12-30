@@ -10,17 +10,19 @@ import re
 from files_dict import FilesDict
 from check_errors import fetch_nextjs_error 
 
-
 def parse_chatgpt_output(chat: str) -> FilesDict:
     """
     Converts a chat string containing file paths and code blocks into a FilesDict object.
-
+    Ensures all files are created in the playground folder.
+    
     Args:
     - chat (str): The chat string containing file paths and code blocks.
 
     Returns:
-    - FilesDict: A dictionary with file paths as keys and code blocks as values.
+    - FilesDict: A dictionary with standardized file paths as keys and code blocks as values.
     """
+    
+
     # Regex to match file paths and associated code blocks
     regex = r"(\S+)\n\s*```[^\n]*\n(.+?)```"
     matches = re.finditer(regex, chat, re.DOTALL)
@@ -28,20 +30,20 @@ def parse_chatgpt_output(chat: str) -> FilesDict:
     files_dict = FilesDict()
     for match in matches:
         # Clean and standardize the file path
-        path = re.sub(r'[\:<>"|?*]', "", match.group(1))
-        path = re.sub(r"^\[(.*)\]$", r"\1", path)
-        path = re.sub(r"^`(.*)`$", r"\1", path)
-        path = re.sub(r"[\]\:]$", "", path)
+        raw_path = match.group(1)
+        path = re.sub(r'[\:<>"|?*]', "", raw_path)  # Remove invalid characters
+        path = re.sub(r"^\[(.*)\]$", r"\1", path)  # Remove surrounding brackets
+        path = re.sub(r"^`(.*)`$", r"\1", path)    # Remove surrounding backticks
+        path = os.path.basename(path)             # Keep only the file name
+        standardized_path = os.path.join(base_dir, path)
 
         # Extract and clean the code content
         content = match.group(2)
 
-        # Add the cleaned path and content to the FilesDict
-        files_dict[path.strip()] = content.strip()
+        # Add the standardized path and content to the FilesDict
+        files_dict[standardized_path.strip()] = content.strip()
 
-    for file_name, file_content in files_dict.items():
-        # Determine the file path
-        file_path = os.path.join(base_dir, file_name)
+    for file_path, file_content in files_dict.items():
         folder_path = os.path.dirname(file_path)
 
         # Create folder structure if necessary
@@ -52,6 +54,8 @@ def parse_chatgpt_output(chat: str) -> FilesDict:
         with open(file_path, "w", encoding="utf-8") as file:
             file.write(file_content)
         print(f"Created file: {file_path}")
+
+
 
 
 initial_code = """
@@ -84,7 +88,8 @@ Make sure to name the parent component's filename as `page.js`
 """
 
 incorporate_feedback = """
-You are writing code for a react.js + next.js project with tailwinds CSS. You will out put the content of the files which need to be updated to act on the feedback, including ALL code.
+You will be given feedback on the output of the code you have written.
+You will output the MODIFIED content of the files which need to be updated to FIX the issues given, including ALL code.
 Represent files like so:
 
 FILENAME    
@@ -99,7 +104,7 @@ export default function Page() {
     return <div>page is the parent component</div>;
 }
 ```
-Do not comment on what every file does. Please note that the code should be fully functional. No placeholders.
+Please note that the code should be fully functional. No placeholders. 
 """
 
 fix_errors = """
@@ -118,7 +123,7 @@ export default function Page() {
     return <div>page is the parent component</div>; 
 }   
 ```
-Do not comment on what every file does. Please note that the code should be fully functional. No placeholders.
+Please note that the code should be fully functional. No placeholders.
 """
 
     
@@ -130,28 +135,42 @@ def create_prompt(prompt, feedback, error):
         files = os.listdir(path)
         for file in files:
             with open(f"{path}/{file}", "r") as f:
+                code += f"{file}\n```\n"
                 code += f.read()
     """Create a prompt based on the feedback and errors."""
     if error:
-        return f"{code}\n\n{fix_errors}\n\n{error}"
+        return f"{code}\n------------\\n{error}\n------------\n{fix_errors}"
     if feedback:
-        return f"{code}\n\n{incorporate_feedback}\n\n{feedback}"
+        return f"{code}\n------------\n{feedback}\n------------\n{incorporate_feedback}"
     return f"{initial_code}\n\n{prompt}"
 
 def generate_code(prompt, image_path, feedback, error):
     final_prompt = create_prompt(prompt, feedback, error)
-    base64_image = encode_image(image_path)
-    response = client.chat.completions.create(
-        model="gpt-4o", 
-        messages=[
-            {"role": "user", 
-             "content":  [
-                {"type": "text", "text": final_prompt},
-                {"type": "image_url", "image_url": {"url": f"data:image/jpeg;base64,{base64_image}"}},
-            ]},
-        ],
-    )
-    return response.choices[0].message.content
+    if not (feedback or error):
+        base64_image = encode_image(image_path)
+        response = client.chat.completions.create(
+            model="gpt-4o", 
+            messages=[
+                {"role": "user", 
+                "content":  [
+                    {"type": "text", "text": final_prompt},
+                    {"type": "image_url", "image_url": {"url": f"data:image/jpeg;base64,{base64_image}"}},
+                ]},
+            ],
+        )
+    else:
+        response = client.chat.completions.create(
+            model="o1-mini", 
+            messages=[
+                {"role": "user", 
+                "content":  [
+                    {"type": "text", "text": final_prompt}
+                ]},
+            ],
+        )
+    result = response.choices[0].message.content
+    print(result)
+    return result
 
 
 def write_code(prompt, image_path, feedback, error, URL):
@@ -168,6 +187,10 @@ def write_code(prompt, image_path, feedback, error, URL):
 
 
 
-
-
 #parse_chatgpt_output(teststring)
+
+# Example usage
+chat_output = """
+file:\n\n./app/playground/page.js\n```javascript\n"use client";\n\nimport { useState } from 'react';\n\nexport default function Page() {...}```
+"""
+#parse_chatgpt_output(chat_output)

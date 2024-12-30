@@ -26,6 +26,6 @@ if __name__ == "__main__":
     feedback = ""
     for iteration in range(MAX_ITERATIONS):
         write_code(PROMPT, "./reference/reference.png", feedback, "", URL)
-        feedback = test_UI(PROMPT, URL, SCREENSHOT_PATH)
+        feedback = test_UI(URL, SCREENSHOT_PATH)
         if feedback=="":
             break
