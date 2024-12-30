@@ -8,6 +8,8 @@ teststring = 'page.js\n```jsx\nimport React from \'react\';\nimport \'./styles.c
 base_dir = "../samplereactproject/app/playground"
 import re
 from files_dict import FilesDict
+from check_errors import fetch_nextjs_error 
+
 
 def parse_chatgpt_output(chat: str) -> FilesDict:
     """
@@ -45,17 +47,18 @@ def parse_chatgpt_output(chat: str) -> FilesDict:
         # Create folder structure if necessary
         if not os.path.exists(folder_path):
             os.makedirs(folder_path)
-
+        
         # Write the file content
         with open(file_path, "w", encoding="utf-8") as file:
             file.write(file_content)
         print(f"Created file: {file_path}")
 
 
-
 initial_code = """
-You will output the content of each file necessary to achieve the user goal, including ALL code. 
-Represent files like so:
+You are writing react.js + next.js components with tailwinds CSS. 
+You will output the file contents for any components you deem necessary to achiev the user goal.
+
+Represent the component files like so:
 
 FILENAME
 ```
@@ -81,7 +84,7 @@ Make sure to name the parent component's filename as `page.js`
 """
 
 incorporate_feedback = """
-You will out put the content of the files which need to be updated to act on the feedback, including ALL code.
+You are writing code for a react.js + next.js project with tailwinds CSS. You will out put the content of the files which need to be updated to act on the feedback, including ALL code.
 Represent files like so:
 
 FILENAME    
@@ -100,7 +103,7 @@ Do not comment on what every file does. Please note that the code should be full
 """
 
 fix_errors = """
-You will output the content of the files which need to be updated to fix the errors, including ALL code.
+You will output the full content of the files which need to be updated to fix the errors.
 Represent files like so:
 
 FILENAME    
@@ -118,22 +121,12 @@ export default function Page() {
 Do not comment on what every file does. Please note that the code should be fully functional. No placeholders.
 """
 
-def capture_screen_errors(page):
-    """Check the page for React error messages displayed on the screen."""
-    try:
-        error_selector = "body *:has-text('Error')"  # Adjust selector to match React's error display
-        error_elements = page.query_selector_all(error_selector)
-        errors = [element.text_content().strip() for element in error_elements]
-        return errors if errors else None
-    except Exception as e:
-        #logging.error(f"Error capturing screen errors: {e}")
-        return None
     
 def create_prompt(prompt, feedback, error):
     code = ""
     if error or feedback:
         #Open code files from path
-        path = "./samplereactproject/app/playground"
+        path = "../samplereactproject/app/playground"
         files = os.listdir(path)
         for file in files:
             with open(f"{path}/{file}", "r") as f:
@@ -146,8 +139,6 @@ def create_prompt(prompt, feedback, error):
     return f"{initial_code}\n\n{prompt}"
 
 def generate_code(prompt, image_path, feedback, error):
-    #return 'page.js\n```jsx\nimport React from \'react\';\nimport \'./styles.css\';\n\nexport default function Page() {\n  return (\n    <div className="bg-gray-100 h-screen flex justify-center items-center">\n      <div className="bg-white shadow-md rounded-lg p-8 max-w-md w-full">\n        <div className="bg-coffee-pattern h-24 w-full rounded-t-lg"></div>\n        <h1 className="text-3xl font-bold text-center mt-6">Welcome back!</h1>\n        <p className="text-center text-gray-600 mb-8">Login to your account.</p>\n        <form>\n          <div className="mb-4">\n            <label className="block text-gray-700">Username</label>\n            <input\n              type="text"\n              className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:border-coffee focus:ring-coffee"\n            />\n          </div>\n          <div className="mb-4">\n            <label className="block text-gray-700">Phone Number</label>\n            <input\n              type="text"\n              className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:border-coffee focus:ring-coffee"\n            />\n          </div>\n          <button className="w-full py-2 mt-6 bg-gradient-to-r from-orange-400 to-orange-700 text-white rounded-md hover:from-orange-500 hover:to-orange-800 focus:outline-none focus:ring-2 focus:ring-coffee focus:ring-opacity-50">\n            Login\n          </button>\n        </form>\n      </div>\n    </div>\n  );\n}\n```\n\nstyles.css\n```css\n.bg-coffee-pattern {\n  background-image: url(\'coffee-pattern.png\');\n  background-size: cover;\n  border-bottom-left-radius: 0.5rem;\n  border-bottom-right-radius: 0.5rem;\n}\n\n.focus\\:border-coffee {\n  border-color: #d39b68;\n}\n\n.focus\\:ring-coffee {\n  box-shadow: 0 0 0 0.2rem rgba(211, 155, 104, 0.25);\n}\n```\n\nYou would need to include the `coffee-pattern.png` image in your public folder or adjust the path in the `styles.css` accordingly.'
-    """Call ChatGPT API to generate React code based on the given prompt and image."""
     final_prompt = create_prompt(prompt, feedback, error)
     base64_image = encode_image(image_path)
     response = client.chat.completions.create(
@@ -168,12 +159,12 @@ def write_code(prompt, image_path, feedback, error, URL):
     code = generate_code(prompt, image_path, feedback, error)
     parse_chatgpt_output(code)
     #run_eslint_prettier()
-    
+    error = fetch_nextjs_error(URL)  
     while error:
         #logging.info("Errors found in the UI. Generating new code.")
         code = generate_code(prompt, image_path, "", error)
         parse_chatgpt_output(code)
-        error = capture_screen_errors(URL)
+        error = fetch_nextjs_error(URL)
 
 
 
