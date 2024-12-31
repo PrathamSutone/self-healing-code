@@ -32,30 +32,6 @@ def take_screenshot(url, output_path):
         finally:
             browser.close()
 
-    """Take a screenshot of the specified URL."""
-    with sync_playwright() as p:
-        browser = p.chromium.launch(headless=True)
-        page = browser.new_page()
-        try:
-            page.goto(url, timeout=60000)  # Wait up to 60 seconds for the page to load
-            page.wait_for_load_state("networkidle")  # Wait for the page to fully load
-            # Optional: Check for the selector if it's necessary
-            if not page.query_selector("main"):
-                print("'main' selector not found. Proceeding with the screenshot.")
-            #Rename old screenshot based on timestamp old name is screenshot.png
-            # Rename old screenshot based on timestamp if it exists
-            if os.path.exists(output_path):
-                timestamp = time.strftime("%Y%m%d-%H%M%S")
-                os.rename(output_path, f"{output_path}-{timestamp}.png")
-
-
-            page.screenshot(path=output_path)
-            print(f"Screenshot saved to {output_path}")
-        except Exception as e:
-            print(f"An error occurred: {e}")
-        finally:
-            browser.close()
-
 def get_ui_feedback(screenshot_path, design_image_path):
     """Use GPT-4 Vision to analyze the UI and provide feedback."""
     try:
@@ -84,5 +60,7 @@ def test_UI(url, screenshot_path):
 
 
 if __name__ == "__main__":
-    feedback = test_UI("http://localhost:3000/playground", "screenshot.png")
-    print(feedback)
+    #feedback = test_UI("http://localhost:3000/playground", "screenshot.png")
+    take_screenshot("http://localhost:3000/playground", "screenshot-test.png")
+    #print(feedback)
+

@@ -9,7 +9,7 @@ client = OpenAI()
 
 # Constants
 MAX_ITERATIONS = 8
-PROMPT = "Generate a React component based on the provided image. Use Tailwinds CSS. "
+PROMPT = "Generate three React components based on the provided image. One for add your card, one for card details, one for th ebuttons below it. Use Tailwinds CSS."
 URL = "http://localhost:3000/playground"
 SCREENSHOT_PATH = "screenshot.png"
 

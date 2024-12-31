@@ -9,6 +9,7 @@ base_dir = "../samplereactproject/app/playground"
 import re
 from files_dict import FilesDict
 from check_errors import fetch_nextjs_error 
+from folder_structure import generate_folder_structure
 
 def parse_chatgpt_output(chat: str) -> FilesDict:
     """
@@ -34,28 +35,24 @@ def parse_chatgpt_output(chat: str) -> FilesDict:
         path = re.sub(r'[\:<>"|?*]', "", raw_path)  # Remove invalid characters
         path = re.sub(r"^\[(.*)\]$", r"\1", path)  # Remove surrounding brackets
         path = re.sub(r"^`(.*)`$", r"\1", path)    # Remove surrounding backticks
-        path = os.path.basename(path)             # Keep only the file name
-        standardized_path = os.path.join(base_dir, path)
-
+        
         # Extract and clean the code content
         content = match.group(2)
 
         # Add the standardized path and content to the FilesDict
-        files_dict[standardized_path.strip()] = content.strip()
+        files_dict[path.strip()] = content.strip()
 
     for file_path, file_content in files_dict.items():
         folder_path = os.path.dirname(file_path)
 
         # Create folder structure if necessary
-        if not os.path.exists(folder_path):
-            os.makedirs(folder_path)
+        if not os.path.exists(base_dir+"/"+folder_path):
+            os.makedirs(base_dir+"/"+folder_path)
         
         # Write the file content
-        with open(file_path, "w", encoding="utf-8") as file:
+        with open(base_dir+"/"+file_path, "w", encoding="utf-8") as file:
             file.write(file_content)
-        print(f"Created file: {file_path}")
-
-
+        print(f"Created file: {base_dir}/{file_path}")
 
 
 initial_code = """
@@ -83,13 +80,11 @@ export default function Page() {
 ```
 
 Do not comment on what every file does. Please note that the code should be fully functional. No placeholders.
-
 Make sure to name the parent component's filename as `page.js`
 """
 
 incorporate_feedback = """
-You will be given feedback on the output of the code you have written.
-You will output the MODIFIED content of the files which need to be updated to FIX the issues given, including ALL code.
+You will be given feedback on the output of the code you have written and the ideal design. You will output the MODIFIED content of the files which need to be updated to FIX the issues given, including ALL code.
 Represent files like so:
 
 FILENAME    
@@ -97,14 +92,7 @@ FILENAME
 CODE
 ```
 
-Example representation of a file:
-page.js
-```
-export default function Page() {
-    return <div>page is the parent component</div>;
-}
-```
-Please note that the code should be fully functional. No placeholders. 
+Please note that the code should be fully functional. No placeholders.
 """
 
 fix_errors = """
@@ -123,7 +111,7 @@ export default function Page() {
     return <div>page is the parent component</div>; 
 }   
 ```
-Please note that the code should be fully functional. No placeholders.
+Do not comment on what every file does. Please note that the code should be fully functional. No placeholders.
 """
 
     
@@ -134,19 +122,22 @@ def create_prompt(prompt, feedback, error):
         path = "../samplereactproject/app/playground"
         files = os.listdir(path)
         for file in files:
+            if os.path.isdir(f"{path}/{file}"):
+                continue
             with open(f"{path}/{file}", "r") as f:
                 code += f"{file}\n```\n"
                 code += f.read()
     """Create a prompt based on the feedback and errors."""
     if error:
-        return f"{code}\n------------\\n{error}\n------------\n{fix_errors}"
+        folder_structure = generate_folder_structure("../samplereactproject/app/playground")
+        return f"{folder_structure}\n------------\n{code}\n------------\n{error}\n------------\n{fix_errors}"
     if feedback:
         return f"{code}\n------------\n{feedback}\n------------\n{incorporate_feedback}"
     return f"{initial_code}\n\n{prompt}"
 
 def generate_code(prompt, image_path, feedback, error):
     final_prompt = create_prompt(prompt, feedback, error)
-    if not (feedback or error):
+    if not (error):
         base64_image = encode_image(image_path)
         response = client.chat.completions.create(
             model="gpt-4o", 
@@ -193,4 +184,85 @@ def write_code(prompt, image_path, feedback, error, URL):
 chat_output = """
 file:\n\n./app/playground/page.js\n```javascript\n"use client";\n\nimport { useState } from 'react';\n\nexport default function Page() {...}```
 """
-#parse_chatgpt_output(chat_output)
+
+chat_output = """
+
+**page.js**
+```javascript
+import AddCard from './AddCard';
+import CardDetails from './CardDetails';
+import ActionButtons from './ActionButtons';
+
+export default function Page() {
+  return (
+    <div className="bg-black min-h-screen flex flex-col items-center space-y-6 py-6">
+      <AddCard />
+      <CardDetails />
+      <ActionButtons />
+    </div>
+  );
+}
+```
+
+**addcard.js**
+```javascript
+export default function AddCard() {
+  return (
+    <div className="flex justify-between items-center bg-gray-900 text-white px-6 py-4 rounded-full">
+      <span>Add Your New Card 👉</span>
+      <button className="bg-gray-800 rounded-full p-2">
+        <span className="text-xl">+</span>
+      </button>
+    </div>
+  );
+}
+```
+
+**carddetails.js**
+```javascript
+export default function CardDetails() {
+  return (
+    <div className="bg-yellow-300 text-black rounded-xl p-6 shadow-lg text-left">
+      <div className="font-bold text-xl mb-2">VISA</div>
+      <div className="flex justify-between items-center mb-4">
+        <span>**** **** **** 3241</span>
+        <button>
+          <span role="img" aria-label="icon">👁️</span>
+        </button>
+      </div>
+      <div className="text-lg mb-1">Total Balance</div>
+      <div className="text-3xl font-bold">$214,453.00</div>
+    </div>
+  );
+}
+```
+
+**actionbuttons.js**
+```javascript
+export default function ActionButtons() {
+  const buttons = [
+    { name: 'Transfer', icon: '🤝' },
+    { name: 'Request', icon: '📬' },
+    { name: 'Savings', icon: '💰' },
+    { name: 'Contact', icon: '📞' },
+  ];
+
+  return (
+    <div className="flex justify-around w-full max-w-md">
+      {buttons.map((button) => (
+        <div key={button.name} className="flex flex-col items-center">
+          <button className="bg-gray-800 rounded-full p-4 mb-2">
+            <span role="img" aria-label={button.name}>{button.icon}</span>
+          </button>
+          <span className="text-white">{button.name}</span>
+        </div>
+      ))}
+    </div>
+  );
+}
+```
+
+Ensure you have Tailwind CSS installed and configured in your Next.js project to use these components effectively.
+"""
+
+parse_chatgpt_output(chat_output)
