@@ -1,5 +1,4 @@
-import requests
-import base64
+
 from utils import encode_image 
 from openai import OpenAI
 client = OpenAI()
@@ -7,53 +6,10 @@ import os
 teststring = 'page.js\n```jsx\nimport React from \'react\';\nimport \'./styles.css\';\n\nexport default function Page() {\n  return (\n    <div className="bg-gray-100 h-screen flex justify-center items-center">\n      <div className="bg-white shadow-md rounded-lg p-8 max-w-md w-full">\n        <div className="bg-coffee-pattern h-24 w-full rounded-t-lg"></div>\n        <h1 className="text-3xl font-bold text-center mt-6">Welcome back!</h1>\n        <p className="text-center text-gray-600 mb-8">Login to your account.</p>\n        <form>\n          <div className="mb-4">\n            <label className="block text-gray-700">Username</label>\n            <input\n              type="text"\n              className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:border-coffee focus:ring-coffee"\n            />\n          </div>\n          <div className="mb-4">\n            <label className="block text-gray-700">Phone Number</label>\n            <input\n              type="text"\n              className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:border-coffee focus:ring-coffee"\n            />\n          </div>\n          <button className="w-full py-2 mt-6 bg-gradient-to-r from-orange-400 to-orange-700 text-white rounded-md hover:from-orange-500 hover:to-orange-800 focus:outline-none focus:ring-2 focus:ring-coffee focus:ring-opacity-50">\n            Login\n          </button>\n        </form>\n      </div>\n    </div>\n  );\n}\n```\n\nstyles.css\n```css\n.bg-coffee-pattern {\n  background-image: url(\'coffee-pattern.png\');\n  background-size: cover;\n  border-bottom-left-radius: 0.5rem;\n  border-bottom-right-radius: 0.5rem;\n}\n\n.focus\\:border-coffee {\n  border-color: #d39b68;\n}\n\n.focus\\:ring-coffee {\n  box-shadow: 0 0 0 0.2rem rgba(211, 155, 104, 0.25);\n}\n```\n\nYou would need to include the `coffee-pattern.png` image in your public folder or adjust the path in the `styles.css` accordingly.'
 base_dir = "../samplereactproject/app/playground"
 import re
-from files_dict import FilesDict
 from check_errors import fetch_nextjs_error 
 from folder_structure import generate_folder_structure
-
-def parse_chatgpt_output(chat: str) -> FilesDict:
-    """
-    Converts a chat string containing file paths and code blocks into a FilesDict object.
-    Ensures all files are created in the playground folder.
-    
-    Args:
-    - chat (str): The chat string containing file paths and code blocks.
-
-    Returns:
-    - FilesDict: A dictionary with standardized file paths as keys and code blocks as values.
-    """
-    
-
-    # Regex to match file paths and associated code blocks
-    regex = r"(\S+)\n\s*```[^\n]*\n(.+?)```"
-    matches = re.finditer(regex, chat, re.DOTALL)
-
-    files_dict = FilesDict()
-    for match in matches:
-        # Clean and standardize the file path
-        raw_path = match.group(1)
-        path = re.sub(r'[\:<>"|?*]', "", raw_path)  # Remove invalid characters
-        path = re.sub(r"^\[(.*)\]$", r"\1", path)  # Remove surrounding brackets
-        path = re.sub(r"^`(.*)`$", r"\1", path)    # Remove surrounding backticks
-        
-        # Extract and clean the code content
-        content = match.group(2)
-
-        # Add the standardized path and content to the FilesDict
-        files_dict[path.strip()] = content.strip()
-
-    for file_path, file_content in files_dict.items():
-        folder_path = os.path.dirname(file_path)
-
-        # Create folder structure if necessary
-        if not os.path.exists(base_dir+"/"+folder_path):
-            os.makedirs(base_dir+"/"+folder_path)
-        
-        # Write the file content
-        with open(base_dir+"/"+file_path, "w", encoding="utf-8") as file:
-            file.write(file_content)
-        print(f"Created file: {base_dir}/{file_path}")
-
+from file_parser import parse_chatgpt_output
+import time
 
 initial_code = """
 You are writing react.js + next.js components with tailwinds CSS. 
@@ -117,7 +73,7 @@ Do not comment on what every file does. Please note that the code should be full
     
 def create_prompt(prompt, feedback, error):
     code = ""
-    if error or feedback:
+    if error:
         #Open code files from path
         path = "../samplereactproject/app/playground"
         files = os.listdir(path)
@@ -127,56 +83,84 @@ def create_prompt(prompt, feedback, error):
             with open(f"{path}/{file}", "r") as f:
                 code += f"{file}\n```\n"
                 code += f.read()
-    """Create a prompt based on the feedback and errors."""
-    if error:
         folder_structure = generate_folder_structure("../samplereactproject/app/playground")
-        return f"{folder_structure}\n------------\n{code}\n------------\n{error}\n------------\n{fix_errors}"
+        return f"{fix_errors}\n\n{folder_structure}\n\n{code}\n\n{error}"
     if feedback:
-        return f"{code}\n------------\n{feedback}\n------------\n{incorporate_feedback}"
+        path = "../samplereactproject/app/playground"
+        files = os.listdir(path)
+        for file in files:
+          if os.path.isdir(f"{path}/{file}"):
+              continue
+          with open(f"{path}/{file}", "r") as f:
+              code += f"{file}\n```\n"
+              code += f.read()
+              code += "\n```\n"
+        return f"{incorporate_feedback}\n\n{code}\n\n{feedback}"
     return f"{initial_code}\n\n{prompt}"
 
-def generate_code(prompt, image_path, feedback, error):
+def generate_code(prompt, image_path, feedback, error, chat_history):
     final_prompt = create_prompt(prompt, feedback, error)
-    if not (error):
-        base64_image = encode_image(image_path)
-        response = client.chat.completions.create(
-            model="gpt-4o", 
-            messages=[
-                {"role": "user", 
-                "content":  [
-                    {"type": "text", "text": final_prompt},
-                    {"type": "image_url", "image_url": {"url": f"data:image/jpeg;base64,{base64_image}"}},
-                ]},
-            ],
-        )
-    else:
-        response = client.chat.completions.create(
-            model="o1-mini", 
-            messages=[
-                {"role": "user", 
-                "content":  [
-                    {"type": "text", "text": final_prompt}
-                ]},
-            ],
-        )
+    message = []
+    base64_image = encode_image(image_path)
+    if feedback: #There is feedback
+        if chat_history:
+          if len(chat_history) <3:
+            message = chat_history[-2:-1]
+          elif len(chat_history) >= 3 and len(chat_history) < 5:
+            message = chat_history[-4:-1]
+          else:
+            message = chat_history[-6:-1]
+        else:
+            message = []
+        message.append({"role": "user", "content":  [
+            {"type": "text", "text": final_prompt}
+        ]})
+        selected_model = "o1-mini"
+    elif error:
+        message = [
+            {"role": "user", "content":  [
+                {"type": "text", "text": final_prompt},
+                {"type": "image_url", "image_url": {"url": f"data:image/jpeg;base64,{encode_image(image_path)}"}},
+            ]},
+        ]
+        selected_model = "gpt-4o"
+    else :
+        message = [
+            {"role": "user", "content":  [
+                {"type": "text", "text": final_prompt},
+                {"type": "image_url", "image_url": {"url": f"data:image/jpeg;base64,{base64_image}"}}
+            ]},
+        ]
+        selected_model = "gpt-4o"
+        
+    print("Chat History:")
+    print(chat_history)
+    
+    print(final_prompt)
+    print(selected_model)
+    print("Thinking about code...")
+
+    response = client.chat.completions.create(
+        model=selected_model,
+        messages=message
+    )
     result = response.choices[0].message.content
     print(result)
-    return result
+    return str(result)
 
-
-def write_code(prompt, image_path, feedback, error, URL):
+def write_code(prompt, image_path, feedback, error, URL, chat_history):
     """Generate React code based on the provided prompt and image."""
-    code = generate_code(prompt, image_path, feedback, error)
+    code = generate_code(prompt, image_path, feedback, error, chat_history)
     parse_chatgpt_output(code)
-    #run_eslint_prettier()
+    
     error = fetch_nextjs_error(URL)  
     while error:
+        time.sleep(5)
         #logging.info("Errors found in the UI. Generating new code.")
-        code = generate_code(prompt, image_path, "", error)
+        code = generate_code(prompt, image_path, "", error, [])
         parse_chatgpt_output(code)
         error = fetch_nextjs_error(URL)
-
-
+    return code
 
 #parse_chatgpt_output(teststring)
 
@@ -187,7 +171,7 @@ file:\n\n./app/playground/page.js\n```javascript\n"use client";\n\nimport { useS
 
 chat_output = """
 
-**page.js**
+**playground/page.js**
 ```javascript
 import AddCard from './AddCard';
 import CardDetails from './CardDetails';
@@ -204,7 +188,7 @@ export default function Page() {
 }
 ```
 
-**addcard.js**
+**playground/addcard.js**
 ```javascript
 export default function AddCard() {
   return (
@@ -218,7 +202,7 @@ export default function AddCard() {
 }
 ```
 
-**carddetails.js**
+**playground/carddetails.js**
 ```javascript
 export default function CardDetails() {
   return (
@@ -237,7 +221,7 @@ export default function CardDetails() {
 }
 ```
 
-**actionbuttons.js**
+**playground/actionbuttons.js**
 ```javascript
 export default function ActionButtons() {
   const buttons = [
@@ -265,4 +249,5 @@ export default function ActionButtons() {
 Ensure you have Tailwind CSS installed and configured in your Next.js project to use these components effectively.
 """
 
-parse_chatgpt_output(chat_output)
+if __name__ == "__main__":
+    parse_chatgpt_output(chat_output)

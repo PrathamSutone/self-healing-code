@@ -16,9 +16,9 @@ def take_screenshot(url, output_path):
             page.goto(url, timeout=60000)  # Wait up to 60 seconds for the page to load
             page.wait_for_load_state("networkidle")  # Wait for the page to fully load
             # Optional: Check for the selector if it's necessary
-            if not page.query_selector("main"):
-                print("'main' selector not found. Proceeding with the screenshot.")
-            #Rename old screenshot based on timestamp old name is screenshot.png
+            # if not page.query_selector("main"):
+            #     print("'main' selector not found. Proceeding with the screenshot.")
+            # #Rename old screenshot based on timestamp old name is screenshot.png
             # Rename old screenshot based on timestamp if it exists
             if os.path.exists(output_path):
                 timestamp = time.strftime("%Y%m%d-%H%M%S")
@@ -42,7 +42,7 @@ def get_ui_feedback(screenshot_path, design_image_path):
              "content":  [
                 {"type": "image_url", "image_url": {"url": f"data:image/jpeg;base64,{encode_image(design_image_path)}"}},
                 {"type": "image_url", "image_url": {"url": f"data:image/jpeg;base64,{encode_image(screenshot_path)}"}},
-                {"type": "text", "text": "Given the wireframe and the code's output , highlight the problems with code's output, what you see now, what needs to be fix, and how it should look."}
+                {"type": "text", "text": "The first image is the desired design and the second image is the code output.  What is one change that needs to be made in the code's output to make it better match the design. Be clear on what you see now and what you want to see instead."}
             ]},
         ],
         )

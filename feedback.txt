@@ -1,0 +1,5 @@
+The second image's font style and weight differ from the first image's design. To make the code's output better match the design, update the font style for "Rating&Reviews" and the average rating number (4.3) to be bold and use a similar font as in the first image. 
+
+**Current**: Regular, thinner font for "Rating&Reviews" and "4.3".
+
+**Desired**: Bold, thicker font matching the first image's style.
