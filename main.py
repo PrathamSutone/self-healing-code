@@ -6,7 +6,7 @@ from check_errors import fetch_nextjs_error
 import os
 
 base_dir = "../samplereactproject/app/playground"
-
+device = "mobile"
 client = OpenAI()
 
 # Constants
@@ -33,8 +33,8 @@ if __name__ == "__main__":
         if os.path.exists(base_dir+"/page.js"):
             with open('feedback.txt', 'r') as f:
                 feedback = f.read()
-                if feedback=="":
-                    feedback = test_UI(URL, SCREENSHOT_PATH)
+                if feedback.strip()=="":
+                    feedback = test_UI(URL, SCREENSHOT_PATH, device=device)
                     with open('feedback.txt', 'w') as f:
                         f.write(feedback)
         else:
@@ -42,7 +42,7 @@ if __name__ == "__main__":
     
     for iteration in range(MAX_ITERATIONS):
         code = write_code(PROMPT, "./reference/reference.png", feedback, "", URL, chat_history)
-        feedback = test_UI(URL, SCREENSHOT_PATH)
+        feedback = test_UI(URL, SCREENSHOT_PATH, device=device)
         with open('feedback.txt', 'w') as f:
             f.write(feedback)
         print("waiting for feedback changes")
