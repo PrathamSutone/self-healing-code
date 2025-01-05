@@ -1,0 +1,355 @@
+{
+"name": "Untitled",
+"nodes": {
+"0:6": {
+"document": {
+"name": "Total Balance Card",
+"children": [
+{
+"name": "Content Balance",
+"children": [
+{
+"name": "Content Text",
+"children": [
+{
+"name": "Frame 49",
+"children": [
+{
+"name": "visa-logo",
+"type": "BOOLEAN_OPERATION",
+"children": [
+{
+"name": "Path",
+"type": "VECTOR",
+"fills": [
+{
+"color": "#172B85"
+}
+],
+"absoluteBoundingBox": {
+"x": -157,
+"y": -95.65021514892578,
+"width": 18.61044692993164,
+"height": 15.166705131530762
+}
+},
+{
+"name": "Path",
+"type": "VECTOR",
+"fills": [
+{
+"color": "#172B85"
+}
+],
+"absoluteBoundingBox": {
+"x": -140.0374298095703,
+"y": -95.65021514892578,
+"width": 7.302755832672119,
+"height": 15.166705131530762
+}
+},
+{
+"name": "Path",
+"type": "VECTOR",
+"fills": [
+{
+"color": "#172B85"
+}
+],
+"absoluteBoundingBox": {
+"x": -133.44178771972656,
+"y": -96,
+"width": 12.13266372680664,
+"height": 15.638298034667969
+}
+},
+{
+"name": "Path",
+"type": "VECTOR",
+"fills": [
+{
+"color": "#172B85"
+}
+],
+"absoluteBoundingBox": {
+"x": -122.13409423828125,
+"y": -95.65021514892578,
+"width": 14.134099006652832,
+"height": 15.166705131530762
+}
+},
+{
+"name": "Path",
+"type": "VECTOR",
+"fills": [
+{
+"color": "#172B85"
+}
+],
+"absoluteBoundingBox": {
+"x": -116.12773132324219,
+"y": -91.56584167480469,
+"width": 3.297818660736084,
+"height": 5.7160749435424805
+}
+}
+],
+"fills": [
+{
+"color": "#10100E"
+}
+],
+"booleanOperation": "EXCLUDE",
+"absoluteBoundingBox": {
+"x": -157,
+"y": -96,
+"width": 49,
+"height": 15.638298034667969
+}
+},
+{
+"name": "Frame 42",
+"children": [
+{
+"name": "**** **** **** 3241",
+"fills": [
+{
+"color": "#152A00"
+}
+],
+"strokeAlign": "OUTSIDE",
+"absoluteBoundingBox": {
+"x": -157,
+"y": -63.36170196533203,
+"width": 155,
+"height": 18
+},
+"characters": "**** **** **** 3241",
+"style": {
+"fontFamily": "Inter",
+"fontPostScriptName": "Inter-SemiBold",
+"fontWeight": 600,
+"paragraphSpacing": 14,
+"textAutoResize": "WIDTH_AND_HEIGHT",
+"fontSize": 16,
+"textAlignHorizontal": "LEFT",
+"textAlignVertical": "CENTER",
+"letterSpacing": 0,
+"lineHeightPx": 18,
+"lineHeightPercent": 92.95774841308594,
+"lineHeightPercentFontSize": 112.5,
+"lineHeightUnit": "PIXELS"
+}
+},
+{
+"name": "eye",
+"children": [
+{
+"name": "Vector",
+"type": "VECTOR",
+"strokes": [
+{
+"color": "#000000"
+}
+],
+"strokeWeight": 1.5,
+"strokeJoin": "ROUND",
+"strokeCap": "ROUND",
+"absoluteBoundingBox": {
+"x": 15.611666679382324,
+"y": -61.86170196533203,
+"width": 16.775833129882812,
+"height": 15
+}
+}
+],
+"background": [
+{
+"color": "#FFFFFF"
+}
+],
+"fills": [
+{
+"color": "#FFFFFF"
+}
+],
+"backgroundColor": "#000000",
+"absoluteBoundingBox": {
+"x": 14,
+"y": -64.36170196533203,
+"width": 20,
+"height": 20
+}
+}
+],
+"backgroundColor": "#000000",
+"itemSpacing": 16,
+"absoluteBoundingBox": {
+"x": -157,
+"y": -64.36170196533203,
+"width": 313,
+"height": 20
+}
+}
+],
+"backgroundColor": "#000000",
+"itemSpacing": 16,
+"absoluteBoundingBox": {
+"x": -157,
+"y": -96,
+"width": 313,
+"height": 51.63829803466797
+}
+},
+{
+"name": "Frame 50",
+"children": [
+{
+"name": "Frame 43",
+"children": [
+{
+"name": "Total Balance",
+"fills": [
+{
+"color": "#152A00"
+}
+],
+"strokeAlign": "OUTSIDE",
+"absoluteBoundingBox": {
+"x": -157,
+"y": -28.36170196533203,
+"width": 313,
+"height": 18
+},
+"characters": "Total Balance",
+"style": {
+"fontFamily": "Inter",
+"fontPostScriptName": "Inter-Medium",
+"fontWeight": 500,
+"paragraphSpacing": 14,
+"textAutoResize": "HEIGHT",
+"fontSize": 14,
+"textAlignHorizontal": "LEFT",
+"textAlignVertical": "CENTER",
+"letterSpacing": 0,
+"lineHeightPx": 18,
+"lineHeightPercent": 106.2374267578125,
+"lineHeightPercentFontSize": 128.57142639160156,
+"lineHeightUnit": "PIXELS"
+}
+}
+],
+"backgroundColor": "#000000",
+"itemSpacing": 10,
+"absoluteBoundingBox": {
+"x": -157,
+"y": -28.36170196533203,
+"width": 313,
+"height": 18
+}
+},
+{
+"name": "$214,453.00",
+"fills": [
+{
+"color": "#000000"
+}
+],
+"strokeAlign": "OUTSIDE",
+"absoluteBoundingBox": {
+"x": -157,
+"y": -2.3617019653320312,
+"width": 313,
+"height": 50
+},
+"characters": "$214,453.00",
+"style": {
+"fontFamily": "Inter",
+"fontPostScriptName": "Inter-SemiBold",
+"fontWeight": 600,
+"paragraphSpacing": 48,
+"textAutoResize": "HEIGHT",
+"fontSize": 40,
+"textAlignHorizontal": "LEFT",
+"textAlignVertical": "CENTER",
+"letterSpacing": -0.8,
+"lineHeightPx": 50,
+"lineHeightPercent": 103.28638458251953,
+"lineHeightPercentFontSize": 125,
+"lineHeightUnit": "PIXELS"
+}
+}
+],
+"backgroundColor": "#000000",
+"itemSpacing": 8,
+"absoluteBoundingBox": {
+"x": -157,
+"y": -28.36170196533203,
+"width": 313,
+"height": 76
+}
+}
+],
+"backgroundColor": "#000000",
+"itemSpacing": 16,
+"absoluteBoundingBox": {
+"x": -157,
+"y": -96,
+"width": 313,
+"height": 143.6383056640625
+}
+}
+],
+"backgroundColor": "#000000",
+"itemSpacing": 16,
+"absoluteBoundingBox": {
+"x": -157,
+"y": -96,
+"width": 313,
+"height": 143.6383056640625
+}
+}
+],
+"background": [
+{
+"color": "#E4FF55"
+}
+],
+"fills": [
+{
+"color": "#E4FF55"
+}
+],
+"cornerRadius": 24,
+"backgroundColor": "#E4FF55",
+"itemSpacing": 24,
+"primaryAxisAlignItems": "CENTER",
+"paddingLeft": 20,
+"paddingRight": 20,
+"paddingTop": 20,
+"paddingBottom": 20,
+"absoluteBoundingBox": {
+"x": -177,
+"y": -116,
+"width": 353,
+"height": 183.6383056640625
+},
+"constraints": {
+"vertical": "TOP",
+"horizontal": "CENTER"
+},
+"effects": [
+{
+"type": "DROP_SHADOW",
+"color": "#E1FF4147",
+"offset": {
+"x": 0,
+"y": 4
+},
+"radius": 32
+}
+]
+}
+}
+}
+}
