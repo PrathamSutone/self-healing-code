@@ -1,4 +1,17 @@
 import json
+
+
+def round_floats(data):
+    """Round all floating-point numbers to 2 decimal places."""
+    if isinstance(data, dict):
+        return {key: round_floats(value) for key, value in data.items()}
+    elif isinstance(data, list):
+        return [round_floats(item) for item in data]
+    elif isinstance(data, float):
+        return round(data, 2)
+    else:
+        return data
+    
 def clean_json(data):
     # Remove dictionaries with a single key-value pair and replace with the value
     if isinstance(data, dict):
@@ -88,6 +101,7 @@ cleaned_data = replace_color_with_hex(figma_data)
 
 # Clean the JSON data
 cleaned_data = remove_key_value_pairs(cleaned_data, config)
+cleaned_data = round_floats(cleaned_data)
 print("Cleaned JSON Data")
 print(len(str(cleaned_data)))
 
@@ -96,3 +110,12 @@ print(len(str(cleaned_data)))
 # Output the cleaned JSON
 with open("cleaned_output.json", "w") as output_file:
     json.dump(cleaned_data, output_file, indent=0)
+
+
+    
+def process_json(data):
+    """Process the JSON data."""
+    cleaned_data = replace_color_with_hex(data)
+    cleaned_data = remove_key_value_pairs(cleaned_data, config)
+    cleaned_data = round_floats(cleaned_data)
+    return cleaned_data

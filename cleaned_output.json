@@ -28,9 +28,9 @@
 ],
 "absoluteBoundingBox": {
 "x": -157,
-"y": -95.65021514892578,
-"width": 18.61044692993164,
-"height": 15.166705131530762
+"y": -95.65,
+"width": 18.61,
+"height": 15.17
 }
 },
 {
@@ -42,10 +42,10 @@
 }
 ],
 "absoluteBoundingBox": {
-"x": -140.0374298095703,
-"y": -95.65021514892578,
-"width": 7.302755832672119,
-"height": 15.166705131530762
+"x": -140.04,
+"y": -95.65,
+"width": 7.3,
+"height": 15.17
 }
 },
 {
@@ -57,10 +57,10 @@
 }
 ],
 "absoluteBoundingBox": {
-"x": -133.44178771972656,
+"x": -133.44,
 "y": -96,
-"width": 12.13266372680664,
-"height": 15.638298034667969
+"width": 12.13,
+"height": 15.64
 }
 },
 {
@@ -72,10 +72,10 @@
 }
 ],
 "absoluteBoundingBox": {
-"x": -122.13409423828125,
-"y": -95.65021514892578,
-"width": 14.134099006652832,
-"height": 15.166705131530762
+"x": -122.13,
+"y": -95.65,
+"width": 14.13,
+"height": 15.17
 }
 },
 {
@@ -87,10 +87,10 @@
 }
 ],
 "absoluteBoundingBox": {
-"x": -116.12773132324219,
-"y": -91.56584167480469,
-"width": 3.297818660736084,
-"height": 5.7160749435424805
+"x": -116.13,
+"y": -91.57,
+"width": 3.3,
+"height": 5.72
 }
 }
 ],
@@ -104,7 +104,13 @@
 "x": -157,
 "y": -96,
 "width": 49,
-"height": 15.638298034667969
+"height": 15.64
+},
+"absoluteRenderBounds": {
+"x": -157,
+"y": -96,
+"width": 49,
+"height": 15.64
 }
 },
 {
@@ -120,9 +126,15 @@
 "strokeAlign": "OUTSIDE",
 "absoluteBoundingBox": {
 "x": -157,
-"y": -63.36170196533203,
+"y": -63.36,
 "width": 155,
 "height": 18
+},
+"absoluteRenderBounds": {
+"x": -155.84,
+"y": -60.16,
+"width": 151.37,
+"height": 11.95
 },
 "characters": "**** **** **** 3241",
 "style": {
@@ -136,7 +148,7 @@
 "textAlignVertical": "CENTER",
 "letterSpacing": 0,
 "lineHeightPx": 18,
-"lineHeightPercent": 92.95774841308594,
+"lineHeightPercent": 92.96,
 "lineHeightPercentFontSize": 112.5,
 "lineHeightUnit": "PIXELS"
 }
@@ -156,10 +168,16 @@
 "strokeJoin": "ROUND",
 "strokeCap": "ROUND",
 "absoluteBoundingBox": {
-"x": 15.611666679382324,
-"y": -61.86170196533203,
-"width": 16.775833129882812,
+"x": 15.61,
+"y": -61.86,
+"width": 16.78,
 "height": 15
+},
+"absoluteRenderBounds": {
+"x": 14.86,
+"y": -62.61,
+"width": 18.28,
+"height": 16.5
 }
 }
 ],
@@ -176,7 +194,13 @@
 "backgroundColor": "#000000",
 "absoluteBoundingBox": {
 "x": 14,
-"y": -64.36170196533203,
+"y": -64.36,
+"width": 20,
+"height": 20
+},
+"absoluteRenderBounds": {
+"x": 14,
+"y": -64.36,
 "width": 20,
 "height": 20
 }
@@ -186,7 +210,13 @@
 "itemSpacing": 16,
 "absoluteBoundingBox": {
 "x": -157,
-"y": -64.36170196533203,
+"y": -64.36,
+"width": 313,
+"height": 20
+},
+"absoluteRenderBounds": {
+"x": -157,
+"y": -64.36,
 "width": 313,
 "height": 20
 }
@@ -198,7 +228,13 @@
 "x": -157,
 "y": -96,
 "width": 313,
-"height": 51.63829803466797
+"height": 51.64
+},
+"absoluteRenderBounds": {
+"x": -157,
+"y": -96,
+"width": 313,
+"height": 51.64
 }
 },
 {
@@ -217,9 +253,15 @@
 "strokeAlign": "OUTSIDE",
 "absoluteBoundingBox": {
 "x": -157,
-"y": -28.36170196533203,
+"y": -28.36,
 "width": 313,
 "height": 18
+},
+"absoluteRenderBounds": {
+"x": -156.38,
+"y": -24.54,
+"width": 88.67,
+"height": 10.35
 },
 "characters": "Total Balance",
 "style": {
@@ -233,8 +275,8 @@
 "textAlignVertical": "CENTER",
 "letterSpacing": 0,
 "lineHeightPx": 18,
-"lineHeightPercent": 106.2374267578125,
-"lineHeightPercentFontSize": 128.57142639160156,
+"lineHeightPercent": 106.24,
+"lineHeightPercentFontSize": 128.57,
 "lineHeightUnit": "PIXELS"
 }
 }
@@ -243,7 +285,13 @@
 "itemSpacing": 10,
 "absoluteBoundingBox": {
 "x": -157,
-"y": -28.36170196533203,
+"y": -28.36,
+"width": 313,
+"height": 18
+},
+"absoluteRenderBounds": {
+"x": -157,
+"y": -28.36,
 "width": 313,
 "height": 18
 }
@@ -258,9 +306,15 @@
 "strokeAlign": "OUTSIDE",
 "absoluteBoundingBox": {
 "x": -157,
-"y": -2.3617019653320312,
+"y": -2.36,
 "width": 313,
 "height": 50
+},
+"absoluteRenderBounds": {
+"x": -155.18,
+"y": 4.91,
+"width": 236.68,
+"height": 39.83
 },
 "characters": "$214,453.00",
 "style": {
@@ -274,7 +328,7 @@
 "textAlignVertical": "CENTER",
 "letterSpacing": -0.8,
 "lineHeightPx": 50,
-"lineHeightPercent": 103.28638458251953,
+"lineHeightPercent": 103.29,
 "lineHeightPercentFontSize": 125,
 "lineHeightUnit": "PIXELS"
 }
@@ -284,7 +338,13 @@
 "itemSpacing": 8,
 "absoluteBoundingBox": {
 "x": -157,
-"y": -28.36170196533203,
+"y": -28.36,
+"width": 313,
+"height": 76
+},
+"absoluteRenderBounds": {
+"x": -157,
+"y": -28.36,
 "width": 313,
 "height": 76
 }
@@ -296,7 +356,13 @@
 "x": -157,
 "y": -96,
 "width": 313,
-"height": 143.6383056640625
+"height": 143.64
+},
+"absoluteRenderBounds": {
+"x": -157,
+"y": -96,
+"width": 313,
+"height": 143.64
 }
 }
 ],
@@ -306,7 +372,13 @@
 "x": -157,
 "y": -96,
 "width": 313,
-"height": 143.6383056640625
+"height": 143.64
+},
+"absoluteRenderBounds": {
+"x": -157,
+"y": -96,
+"width": 313,
+"height": 143.64
 }
 }
 ],
@@ -332,7 +404,13 @@
 "x": -177,
 "y": -116,
 "width": 353,
-"height": 183.6383056640625
+"height": 183.64
+},
+"absoluteRenderBounds": {
+"x": -209,
+"y": -144,
+"width": 417,
+"height": 247.64
 },
 "constraints": {
 "vertical": "TOP",

@@ -9,11 +9,13 @@ import re
 from check_errors import fetch_nextjs_error 
 from folder_structure import generate_folder_structure
 from file_parser import parse_chatgpt_output
+from figma_apis import fetch_figma_data, parse_figma_url
+global figma_url
 import time
 
 initial_code = """
 You are writing react.js + next.js components with tailwinds CSS. 
-You will output the file contents for any components you deem necessary to achiev the user goal.
+You will output the file contents for any components necessary to achive the user goal.
 
 Represent the component files like so:
 
@@ -71,7 +73,7 @@ Do not comment on what every file does. Please note that the code should be full
 """
 
     
-def create_prompt(prompt, feedback, error):
+def create_prompt(prompt, feedback, error, figma_data):
     code = ""
     if error:
         #Open code files from path
@@ -96,10 +98,11 @@ def create_prompt(prompt, feedback, error):
               code += f.read()
               code += "\n```\n"
         return f"{incorporate_feedback}\n\n{code}\n\n{feedback}"
-    return f"{initial_code}\n\n{prompt}"
+    else:        
+        return f"{figma_data}\n\n{initial_code}\n\n{prompt}"
 
-def generate_code(prompt, image_path, feedback, error, chat_history):
-    final_prompt = create_prompt(prompt, feedback, error)
+def generate_code(prompt, image_path, figma_data, feedback, error, chat_history):
+    final_prompt = create_prompt(prompt, feedback, error, figma_data)
     message = []
     base64_image = encode_image(image_path)
     if feedback: #There is feedback
@@ -148,9 +151,9 @@ def generate_code(prompt, image_path, feedback, error, chat_history):
     print(result)
     return str(result)
 
-def write_code(prompt, image_path, feedback, error, URL, chat_history):
+def write_code(prompt, image_path, figma_data, feedback, error, URL, chat_history):
     """Generate React code based on the provided prompt and image."""
-    code = generate_code(prompt, image_path, feedback, error, chat_history)
+    code = generate_code(prompt, image_path, figma_data, feedback, error, chat_history)
     parse_chatgpt_output(code)
     
     error = fetch_nextjs_error(URL)  

@@ -1,6 +1,5 @@
 {
     "keys_to_remove": [
-      "rectangleCornerRadii",
       "id",
       "lastModified",
       "thumbnailUrl",
@@ -10,7 +9,9 @@
       "version",
       "editorType",
       "linkAccess",
-      "absoluteRenderBounds",
+      "prototypeStartNodeID",
+      "flowStartingPoints",
+      "prototypeDevice",
       "boundVariables",
       "layoutGrow",
       "counterAxisSizingMode",
