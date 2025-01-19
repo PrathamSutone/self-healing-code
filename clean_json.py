@@ -1,6 +1,5 @@
 import json
 
-
 def round_floats(data):
     """Round all floating-point numbers to 2 decimal places."""
     if isinstance(data, dict):
@@ -46,7 +45,7 @@ def replace_color_with_hex(data):
                     new_data[key] = rgba_to_hex(value)
                 except KeyError:
                     # Skip if the 'color' object is incomplete
-                    print(f"Incomplete color object found: {value}")
+                    #(f"Incomplete color object found: {value}")
                     continue
             else:
                 new_data[key] = replace_color_with_hex(value)
@@ -92,12 +91,11 @@ def remove_key_value_pairs(data, config):
 with open("config.json", "r") as config_file:
     config = json.load(config_file) 
 
-with open("figma.json", "r") as file:
+with open("figma_data.json", "r") as file:
     figma_data = json.load(file)
 
 print(len(str(figma_data)))
 cleaned_data = replace_color_with_hex(figma_data)
-
 
 # Clean the JSON data
 cleaned_data = remove_key_value_pairs(cleaned_data, config)
@@ -110,7 +108,6 @@ print(len(str(cleaned_data)))
 # Output the cleaned JSON
 with open("cleaned_output.json", "w") as output_file:
     json.dump(cleaned_data, output_file, indent=0)
-
 
     
 def process_json(data):

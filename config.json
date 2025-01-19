@@ -1,6 +1,8 @@
 {
     "keys_to_remove": [
       "id",
+      "absoluteRenderBounds",
+      "absoluteBoundingBox",
       "lastModified",
       "thumbnailUrl",
       "role",
