@@ -46,13 +46,14 @@ def get_ui_feedback(screenshot_path, design_image_path):
              "content":  [
                 {"type": "image_url", "image_url": {"url": f"data:image/jpeg;base64,{encode_image(design_image_path)}"}},
                 {"type": "image_url", "image_url": {"url": f"data:image/jpeg;base64,{encode_image(screenshot_path)}"}},
-                {"type": "text", "text": "Given the design (1st) and the code's output(2nd), Let's analyze the images step by step: 1. First, identify all distinct objects in the code's output and the design 2. For each object, describe its location relative to frame boundaries 3. Note the size of each object compared to others 4. Describe spatial relationships between objects 5. Based on this analysis, what can we fix in the code's output for it to better match the design."}
+                {"type": "text", "text": "Given the ideal design (1) and the code's output(2). Which UI elements in the code's output do not match the design?"}
             ]},
         ],
         )
-        result = response.choices[0].message.content
-        print(result)
-        return result
+        intermediate_result = response.choices[0].message.content
+        print(intermediate_result)
+        return intermediate_result
+        
     except Exception as e:
         #logging.error(f"Error getting UI feedback: {e}")
         raise
@@ -64,7 +65,7 @@ def test_UI(url, screenshot_path, device):
 
 
 if __name__ == "__main__":
-    #feedback = test_UI("http://localhost:3000/playground", "screenshot.png")
-    take_screenshot("http://localhost:3000/playground", "screenshot-test.png", "mobile")
+    feedback = test_UI("http://localhost:3000/playground", "screenshot.png",'mobile')
+    #take_screenshot("http://localhost:3000/playground", "screenshot-test.png", "mobile")
     #print(feedback)
 
