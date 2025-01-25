@@ -6,6 +6,7 @@ import json
 # Constants
 FIGMA_API_BASE_URL = "https://api.figma.com/v1"
 figma_token = os.getenv("FIGMA_TOKEN")
+print(figma_token)
 
 # Function to parse Figma URL
 def parse_figma_url(figma_url):
@@ -32,9 +33,7 @@ def fetch_figma_data(file_key, node_id=None):
         params = {}
     
     response = requests.get(endpoint, headers=headers, params=params)
-    
-    if response.status_code != 200:
-        raise Exception(f"Error: {response.status_code}, {response.text}")
+
     
     return response.json()
 
@@ -162,10 +161,11 @@ def fetch_image_from_node(file_key, node_id, format="png", scale=2):
                     if fill.get('type') == 'IMAGE':
                         image_id = fill['imageRef']
                         image_url = f"{FIGMA_API_BASE_URL}/images/{file_key}?ids={image_id}&format={format}&scale=2"
-                        image_data[image_id] = {node['name'], image_url}
-
+                        image_data[image_id] = {'name': node['name'], 'image_url': image_url}
             
-            if node['type'] == 'BOOLEAN_OPERATION' or node['type'] == 'FRAME':
+            #if node['type'] == 'BOOLEAN_OPERATION' or node['type'] == 'FRAME' or node['type'] == 'GROUP':
+            #check if node has children
+            if 'children' in node:
                 # Check if all the children are vectors
                 all_children_are_vectors = all(child['type'] == 'VECTOR' for child in node['children'])
                 if all_children_are_vectors:
@@ -185,11 +185,11 @@ def fetch_image_from_node(file_key, node_id, format="png", scale=2):
 
                     if response.status_code != 200:
                         raise Exception(f"Error: {response.status_code}, {response.text}")
-                
-            # print(f"Node: {node['name']}")
-            # print(f"Node ID: {node['id']}")
-            # print(f"Node Type: {node['type']}")
-                
+                    
+                print(f"Node: {node['name']}")
+                print(f"Node ID: {node['id']}")
+                print(f"Node Type: {node['type']}")
+                    
         if not all_children_are_vectors:
             if 'document' in node:
                 # If the node is a document, extract images from its children
@@ -207,7 +207,7 @@ def fetch_image_from_node(file_key, node_id, format="png", scale=2):
 
 # Main execution
 if __name__ == "__main__":
-    figma_url = "https://www.figma.com/design/Xss1mamz6vOArgFKyiJrPj/Untitled?node-id=98-194&t=oADpqnWHDZCrTy2o-0"
+    figma_url = "https://www.figma.com/design/QzCWHjcaXXWZyEquCGKJlg/Untitled?node-id=1-70&t=psk1Vu2veMoAvXRJ-0"
 
     try:
         file_key, node_id = parse_figma_url(figma_url)
@@ -233,78 +233,4 @@ if __name__ == "__main__":
 
     except Exception as e:
         print(f"Error: {e}")
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-# def test_fetch_figma_image():
-#     file_key = "JJKKfALbl4J7lcVq5wX5Dw"
-#     node_id = "35-7808"
-    
-#     try:
-#         # Test for PNG image
-#         image_data = fetch_figma_image(file_key, node_id, format="png")
-#         assert isinstance(image_data, bytes), "Expected image data as bytes"
-        
-#         # Test for JPEG image
-#         image_data = fetch_figma_image(file_key, node_id, format="jpeg")
-#         assert isinstance(image_data, bytes), "Expected image data as bytes"
-#     except Exception as e:
-#         assert False, f"Unexpected error: {e}"
-
-#     # Invalid node_id should raise an exception
-#     try:
-#         fetch_figma_image(file_key, "invalidNodeId", format="png")
-#         assert False, "Expected exception for invalid node ID"
-#     except Exception:
-#         pass
-
-
-# def test_download_and_save_images():
-#     file_key = "JJKKfALbl4J7lcVq5wX5Dw"
-#     node_id = "35-7808"
-    
-#     # Fetch image data
-#     image_data = fetch_image_from_node(file_key, node_id, format="png")
-    
-#     # Ensure that we save images to the disk
-#     try:
-#         download_and_save_images(image_data, file_key, format="png")
-#         # Verify that the image files exist
-#         for image_id, value in image_data.items():
-#             image_name = value[1]
-#             assert os.path.exists(f"reference/{image_name}.png"), f"Image {image_name}.png not saved"
-#     except Exception as e:
-#         assert False, f"Unexpected error: {e}"
 

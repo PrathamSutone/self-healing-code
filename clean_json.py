@@ -91,23 +91,6 @@ def remove_key_value_pairs(data, config):
 with open("config.json", "r") as config_file:
     config = json.load(config_file) 
 
-with open("figma_data.json", "r") as file:
-    figma_data = json.load(file)
-
-print(len(str(figma_data)))
-cleaned_data = replace_color_with_hex(figma_data)
-
-# Clean the JSON data
-cleaned_data = remove_key_value_pairs(cleaned_data, config)
-cleaned_data = round_floats(cleaned_data)
-print("Cleaned JSON Data")
-print(len(str(cleaned_data)))
-
-#cleaned_data = clean_json(cleaned_data)
-
-# Output the cleaned JSON
-with open("cleaned_output.json", "w") as output_file:
-    json.dump(cleaned_data, output_file, indent=0)
 
     
 def process_json(data):
@@ -116,3 +99,16 @@ def process_json(data):
     cleaned_data = remove_key_value_pairs(cleaned_data, config)
     cleaned_data = round_floats(cleaned_data)
     return cleaned_data
+
+
+if __name__ == "__main__":
+    # Load the JSON data
+    with open("figma_data.json", "r") as json_file:
+        data = json.load(json_file)
+
+    # Process the JSON data
+    cleaned_data = process_json(data)
+
+    # Save the cleaned JSON data
+    with open("cleaned_figma_data.json", "w") as cleaned_json_file:
+        json.dump(cleaned_data, cleaned_json_file, indent=4)

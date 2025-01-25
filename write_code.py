@@ -12,7 +12,7 @@ global figma_url
 import time
 
 initial_code = """
-You are writing code for a Next.js project. 
+You are writing code for a Next.js project with Tailwinds Css.
 The filepaths of the icons/pictures to use have been provided, import them. 
 The styling information is also given. Use it.
 You will output the file contents for the components necessary to achive the user goal. 
@@ -84,7 +84,7 @@ Do not comment on what every file does. Please note that the code should be full
 """
 
     
-def create_prompt(prompt, feedback, error, figma_data):
+def create_prompt(feedback, error, figma_data):
     code = ""
     if error:
         #Open code files from path
@@ -93,6 +93,8 @@ def create_prompt(prompt, feedback, error, figma_data):
         for file in files:
             if os.path.isdir(f"{path}/{file}"):
                 continue
+            if file.endswith(".svg") or file.endswith(".png") or file.endswith(".jpg") or file.endswith(".jpeg"):
+              continue
             with open(f"{path}/{file}", "r") as f:
                 code += f"{file}\n```\n"
                 code += f.read()
@@ -103,6 +105,8 @@ def create_prompt(prompt, feedback, error, figma_data):
         files = os.listdir(path)
         for file in files:
           if os.path.isdir(f"{path}/{file}"):
+              continue
+          if file.endswith(".svg") or file.endswith(".png") or file.endswith(".jpg") or file.endswith(".jpeg"):
               continue
           with open(f"{path}/{file}", "r") as f:
               code += f"{file}\n```\n"
@@ -116,10 +120,10 @@ def create_prompt(prompt, feedback, error, figma_data):
           if os.path.isdir(f"{path}/{file}"):
               continue
           code += f"./{file} "
-        return f"Style Info: {figma_data}\n\nAssets to use: {code}\n\n{initial_code}\n\n{prompt}"
+        return f"Style Info: {figma_data}\n\nAssets to use: {code}\n\n{initial_code}\n\nUse Next.js and Tailwinds to create accurate components for the given design"
 
-def generate_code(prompt, image_path, figma_data, feedback, error, chat_history):
-    final_prompt = create_prompt(prompt, feedback, error, figma_data)
+def generate_code(image_path, figma_data, feedback, error, chat_history):
+    final_prompt = create_prompt(feedback, error, figma_data)
     message = []
     base64_image = encode_image(image_path)
     if feedback: #There is feedback
@@ -133,9 +137,10 @@ def generate_code(prompt, image_path, figma_data, feedback, error, chat_history)
         else:
             message = []
         message.append({"role": "user", "content":  [
-            {"type": "text", "text": final_prompt}
+            {"type": "text", "text": final_prompt},
+            {"type": "image_url", "image_url": {"url": f"data:image/jpeg;base64,{encode_image(image_path)}"}},
         ]})
-        selected_model = "o1-mini"
+        selected_model = "gpt-4o"
     elif error:
         message = [
             {"role": "user", "content":  [
@@ -168,9 +173,9 @@ def generate_code(prompt, image_path, figma_data, feedback, error, chat_history)
     print(result)
     return str(result)
 
-def write_code(prompt, image_path, figma_data, feedback, error, URL, chat_history):
+def write_code(image_path, figma_data, feedback, error, URL, chat_history):
     """Generate React code based on the provided prompt and image."""
-    code = generate_code(prompt, image_path, figma_data, feedback, error, chat_history)
+    code = generate_code(image_path, figma_data, feedback, error, chat_history)
     parse_chatgpt_output(code)
     time.sleep(5)
     error = fetch_nextjs_error(URL)  
@@ -182,7 +187,7 @@ def write_code(prompt, image_path, figma_data, feedback, error, URL, chat_histor
         if user_input.lower() != 'y':
             time.sleep(2)
         #logging.info("Errors found in the UI. Generating new code.")
-        code = generate_code(prompt, image_path, {}, "", error, [])
+        code = generate_code(image_path, {}, "", error, [])
         parse_chatgpt_output(code)
         error = fetch_nextjs_error(URL)
     return code
