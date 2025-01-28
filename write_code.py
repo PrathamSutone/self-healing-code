@@ -93,7 +93,7 @@ def create_prompt(feedback, error, figma_data):
         for file in files:
             if os.path.isdir(f"{path}/{file}"):
                 continue
-            if file.endswith(".svg") or file.endswith(".png") or file.endswith(".jpg") or file.endswith(".jpeg"):
+            if file.endswith(".png") or file.endswith(".jpg") or file.endswith(".jpeg"):
               continue
             with open(f"{path}/{file}", "r") as f:
                 code += f"{file}\n```\n"
@@ -106,7 +106,7 @@ def create_prompt(feedback, error, figma_data):
         for file in files:
           if os.path.isdir(f"{path}/{file}"):
               continue
-          if file.endswith(".svg") or file.endswith(".png") or file.endswith(".jpg") or file.endswith(".jpeg"):
+          if file.endswith(".png") or file.endswith(".jpg") or file.endswith(".jpeg"):
               continue
           with open(f"{path}/{file}", "r") as f:
               code += f"{file}\n```\n"
@@ -138,9 +138,9 @@ def generate_code(image_path, figma_data, feedback, error, chat_history):
             message = []
         message.append({"role": "user", "content":  [
             {"type": "text", "text": final_prompt},
-            {"type": "image_url", "image_url": {"url": f"data:image/jpeg;base64,{encode_image(image_path)}"}},
+            #{"type": "image_url", "image_url": {"url": f"data:image/jpeg;base64,{encode_image(image_path)}"}},
         ]})
-        selected_model = "gpt-4o"
+        selected_model = "o1-preview"
     elif error:
         message = [
             {"role": "user", "content":  [
@@ -169,6 +169,7 @@ def generate_code(image_path, figma_data, feedback, error, chat_history):
         model=selected_model,
         messages=message
     )
+
     result = response.choices[0].message.content
     print(result)
     return str(result)
@@ -185,7 +186,7 @@ def write_code(image_path, figma_data, feedback, error, URL, chat_history):
         #Wait for user input
         user_input = input("Enter 'y' to fix the errors: ")
         if user_input.lower() != 'y':
-            time.sleep(2)
+            return code
         #logging.info("Errors found in the UI. Generating new code.")
         code = generate_code(image_path, {}, "", error, [])
         parse_chatgpt_output(code)

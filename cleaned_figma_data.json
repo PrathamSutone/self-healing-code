@@ -1,0 +1,1048 @@
+{
+    "name": "Untitled",
+    "nodes": {
+        "0:20": {
+            "document": {
+                "name": "Reviews",
+                "children": [
+                    {
+                        "name": "Total Review",
+                        "children": [
+                            {
+                                "name": "Reviews",
+                                "fills": [
+                                    {
+                                        "color": "#1A202C"
+                                    }
+                                ],
+                                "strokeAlign": "OUTSIDE",
+                                "characters": "Reviews",
+                                "style": {
+                                    "fontFamily": "Plus Jakarta Sans",
+                                    "fontPostScriptName": "PlusJakartaSans-SemiBold",
+                                    "fontStyle": "SemiBold",
+                                    "fontWeight": 600,
+                                    "fontSize": 20.0,
+                                    "textAlignHorizontal": "LEFT",
+                                    "textAlignVertical": "CENTER",
+                                    "letterSpacing": -0.4,
+                                    "lineHeightPx": 25.2,
+                                    "lineHeightPercent": 100.0,
+                                    "lineHeightUnit": "INTRINSIC_%"
+                                }
+                            },
+                            {
+                                "name": "Total Review",
+                                "children": [
+                                    {
+                                        "name": "13",
+                                        "fills": [
+                                            {
+                                                "color": "#FFFFFF"
+                                            }
+                                        ],
+                                        "strokeAlign": "OUTSIDE",
+                                        "characters": "13",
+                                        "style": {
+                                            "fontFamily": "Plus Jakarta Sans",
+                                            "fontPostScriptName": "PlusJakartaSans-Bold",
+                                            "fontStyle": "Bold",
+                                            "fontWeight": 700,
+                                            "fontSize": 14.0,
+                                            "textAlignHorizontal": "CENTER",
+                                            "textAlignVertical": "CENTER",
+                                            "letterSpacing": 0.0,
+                                            "lineHeightPx": 17.64,
+                                            "lineHeightPercent": 100.0,
+                                            "lineHeightUnit": "INTRINSIC_%"
+                                        }
+                                    }
+                                ],
+                                "background": [
+                                    {
+                                        "color": "#3563E9"
+                                    }
+                                ],
+                                "fills": [
+                                    {
+                                        "color": "#3563E9"
+                                    }
+                                ],
+                                "cornerRadius": 4.0,
+                                "strokeWeight": 2.0,
+                                "backgroundColor": "#3563E9",
+                                "itemSpacing": 8.0,
+                                "primaryAxisAlignItems": "CENTER",
+                                "paddingLeft": 20.0,
+                                "paddingRight": 20.0,
+                                "constraints": {
+                                    "vertical": "TOP",
+                                    "horizontal": "RIGHT"
+                                }
+                            }
+                        ],
+                        "backgroundColor": "#000000",
+                        "itemSpacing": 12.0
+                    },
+                    {
+                        "name": "Reviews 1",
+                        "type": "GROUP",
+                        "children": [
+                            {
+                                "name": "Name",
+                                "children": [
+                                    {
+                                        "name": "Alex Stanton",
+                                        "fills": [
+                                            {
+                                                "color": "#1A202C"
+                                            }
+                                        ],
+                                        "strokeAlign": "OUTSIDE",
+                                        "characters": "Alex Stanton",
+                                        "style": {
+                                            "fontFamily": "Plus Jakarta Sans",
+                                            "fontPostScriptName": "PlusJakartaSans-Bold",
+                                            "fontStyle": "Bold",
+                                            "fontWeight": 700,
+                                            "fontSize": 20.0,
+                                            "textAlignHorizontal": "LEFT",
+                                            "textAlignVertical": "CENTER",
+                                            "letterSpacing": -0.6,
+                                            "lineHeightPx": 30.0,
+                                            "lineHeightPercent": 119.05,
+                                            "lineHeightPercentFontSize": 150.0,
+                                            "lineHeightUnit": "FONT_SIZE_%"
+                                        }
+                                    },
+                                    {
+                                        "name": "CEO at Bukalapak",
+                                        "fills": [
+                                            {
+                                                "color": "#90A3BF"
+                                            }
+                                        ],
+                                        "strokeAlign": "OUTSIDE",
+                                        "characters": "CEO at Bukalapak",
+                                        "style": {
+                                            "fontFamily": "Plus Jakarta Sans",
+                                            "fontPostScriptName": "PlusJakartaSans-Medium",
+                                            "fontStyle": "Medium",
+                                            "fontWeight": 500,
+                                            "fontSize": 14.0,
+                                            "textAlignHorizontal": "LEFT",
+                                            "textAlignVertical": "CENTER",
+                                            "letterSpacing": -0.28,
+                                            "lineHeightPx": 21.0,
+                                            "lineHeightPercent": 119.05,
+                                            "lineHeightPercentFontSize": 150.0,
+                                            "lineHeightUnit": "FONT_SIZE_%"
+                                        }
+                                    }
+                                ],
+                                "backgroundColor": "#000000",
+                                "itemSpacing": 8.0
+                            },
+                            {
+                                "name": "Date",
+                                "children": [
+                                    {
+                                        "name": "21 July 2022",
+                                        "fills": [
+                                            {
+                                                "color": "#90A3BF"
+                                            }
+                                        ],
+                                        "strokeAlign": "OUTSIDE",
+                                        "characters": "21 July 2022",
+                                        "style": {
+                                            "fontFamily": "Plus Jakarta Sans",
+                                            "fontPostScriptName": "PlusJakartaSans-Medium",
+                                            "fontStyle": "Medium",
+                                            "fontWeight": 500,
+                                            "fontSize": 14.0,
+                                            "textAlignHorizontal": "RIGHT",
+                                            "textAlignVertical": "CENTER",
+                                            "letterSpacing": -0.28,
+                                            "lineHeightPx": 21.0,
+                                            "lineHeightPercent": 119.05,
+                                            "lineHeightPercentFontSize": 150.0,
+                                            "lineHeightUnit": "FONT_SIZE_%"
+                                        }
+                                    },
+                                    {
+                                        "name": "Reviews",
+                                        "children": [
+                                            {
+                                                "name": "ic-actions-star",
+                                                "type": "INSTANCE",
+                                                "componentId": "0:3",
+                                                "overrides": [
+                                                    {
+                                                        "overriddenFields": [
+                                                            "strokeWeight",
+                                                            "inheritFillStyleId",
+                                                            "fills",
+                                                            "strokes"
+                                                        ]
+                                                    },
+                                                    {
+                                                        "overriddenFields": [
+                                                            "height",
+                                                            "width"
+                                                        ]
+                                                    }
+                                                ],
+                                                "children": [
+                                                    {
+                                                        "name": "Layer",
+                                                        "type": "GROUP",
+                                                        "children": [
+                                                            {
+                                                                "name": "Vector",
+                                                                "type": "VECTOR",
+                                                                "fills": [
+                                                                    {
+                                                                        "color": "#FBAD39"
+                                                                    }
+                                                                ],
+                                                                "strokeWeight": 1.5,
+                                                                "strokeJoin": "ROUND",
+                                                                "strokeCap": "ROUND"
+                                                            }
+                                                        ],
+                                                        "backgroundColor": "#000000"
+                                                    }
+                                                ],
+                                                "background": [
+                                                    {
+                                                        "color": "#FFFFFF"
+                                                    }
+                                                ],
+                                                "fills": [
+                                                    {
+                                                        "color": "#FFFFFF"
+                                                    }
+                                                ],
+                                                "backgroundColor": "#000000"
+                                            },
+                                            {
+                                                "name": "ic-actions-star",
+                                                "type": "INSTANCE",
+                                                "componentId": "0:3",
+                                                "overrides": [
+                                                    {
+                                                        "overriddenFields": [
+                                                            "strokeWeight",
+                                                            "inheritFillStyleId",
+                                                            "fills",
+                                                            "strokes"
+                                                        ]
+                                                    },
+                                                    {
+                                                        "overriddenFields": [
+                                                            "height",
+                                                            "width"
+                                                        ]
+                                                    }
+                                                ],
+                                                "children": [
+                                                    {
+                                                        "name": "Layer",
+                                                        "type": "GROUP",
+                                                        "children": [
+                                                            {
+                                                                "name": "Vector",
+                                                                "type": "VECTOR",
+                                                                "fills": [
+                                                                    {
+                                                                        "color": "#FBAD39"
+                                                                    }
+                                                                ],
+                                                                "strokeWeight": 1.5,
+                                                                "strokeJoin": "ROUND",
+                                                                "strokeCap": "ROUND"
+                                                            }
+                                                        ],
+                                                        "backgroundColor": "#000000"
+                                                    }
+                                                ],
+                                                "background": [
+                                                    {
+                                                        "color": "#FFFFFF"
+                                                    }
+                                                ],
+                                                "fills": [
+                                                    {
+                                                        "color": "#FFFFFF"
+                                                    }
+                                                ],
+                                                "backgroundColor": "#000000"
+                                            },
+                                            {
+                                                "name": "ic-actions-star",
+                                                "type": "INSTANCE",
+                                                "componentId": "0:3",
+                                                "overrides": [
+                                                    {
+                                                        "overriddenFields": [
+                                                            "strokeWeight",
+                                                            "inheritFillStyleId",
+                                                            "fills",
+                                                            "strokes"
+                                                        ]
+                                                    },
+                                                    {
+                                                        "overriddenFields": [
+                                                            "height",
+                                                            "width"
+                                                        ]
+                                                    }
+                                                ],
+                                                "children": [
+                                                    {
+                                                        "name": "Layer",
+                                                        "type": "GROUP",
+                                                        "children": [
+                                                            {
+                                                                "name": "Vector",
+                                                                "type": "VECTOR",
+                                                                "fills": [
+                                                                    {
+                                                                        "color": "#FBAD39"
+                                                                    }
+                                                                ],
+                                                                "strokeWeight": 1.5,
+                                                                "strokeJoin": "ROUND",
+                                                                "strokeCap": "ROUND"
+                                                            }
+                                                        ],
+                                                        "backgroundColor": "#000000"
+                                                    }
+                                                ],
+                                                "background": [
+                                                    {
+                                                        "color": "#FFFFFF"
+                                                    }
+                                                ],
+                                                "fills": [
+                                                    {
+                                                        "color": "#FFFFFF"
+                                                    }
+                                                ],
+                                                "backgroundColor": "#000000"
+                                            },
+                                            {
+                                                "name": "ic-actions-star",
+                                                "type": "INSTANCE",
+                                                "componentId": "0:3",
+                                                "overrides": [
+                                                    {
+                                                        "overriddenFields": [
+                                                            "strokeWeight",
+                                                            "inheritFillStyleId",
+                                                            "fills",
+                                                            "strokes"
+                                                        ]
+                                                    },
+                                                    {
+                                                        "overriddenFields": [
+                                                            "height",
+                                                            "width"
+                                                        ]
+                                                    }
+                                                ],
+                                                "children": [
+                                                    {
+                                                        "name": "Layer",
+                                                        "type": "GROUP",
+                                                        "children": [
+                                                            {
+                                                                "name": "Vector",
+                                                                "type": "VECTOR",
+                                                                "fills": [
+                                                                    {
+                                                                        "color": "#FBAD39"
+                                                                    }
+                                                                ],
+                                                                "strokeWeight": 1.5,
+                                                                "strokeJoin": "ROUND",
+                                                                "strokeCap": "ROUND"
+                                                            }
+                                                        ],
+                                                        "backgroundColor": "#000000"
+                                                    }
+                                                ],
+                                                "background": [
+                                                    {
+                                                        "color": "#FFFFFF"
+                                                    }
+                                                ],
+                                                "fills": [
+                                                    {
+                                                        "color": "#FFFFFF"
+                                                    }
+                                                ],
+                                                "backgroundColor": "#000000"
+                                            },
+                                            {
+                                                "name": "ic-actions-star",
+                                                "type": "INSTANCE",
+                                                "componentId": "0:3",
+                                                "overrides": [
+                                                    {
+                                                        "overriddenFields": [
+                                                            "strokeWeight",
+                                                            "strokes"
+                                                        ]
+                                                    },
+                                                    {
+                                                        "overriddenFields": [
+                                                            "height",
+                                                            "width"
+                                                        ]
+                                                    }
+                                                ],
+                                                "children": [
+                                                    {
+                                                        "name": "Layer",
+                                                        "type": "GROUP",
+                                                        "children": [
+                                                            {
+                                                                "name": "Vector",
+                                                                "type": "VECTOR",
+                                                                "strokes": [
+                                                                    {
+                                                                        "color": "#90A3BF"
+                                                                    }
+                                                                ],
+                                                                "strokeWeight": 1.5,
+                                                                "strokeJoin": "ROUND",
+                                                                "strokeCap": "ROUND"
+                                                            }
+                                                        ],
+                                                        "backgroundColor": "#000000"
+                                                    }
+                                                ],
+                                                "background": [
+                                                    {
+                                                        "color": "#FFFFFF"
+                                                    }
+                                                ],
+                                                "fills": [
+                                                    {
+                                                        "color": "#FFFFFF"
+                                                    }
+                                                ],
+                                                "backgroundColor": "#000000"
+                                            }
+                                        ],
+                                        "backgroundColor": "#000000",
+                                        "itemSpacing": 2.0
+                                    }
+                                ],
+                                "backgroundColor": "#000000",
+                                "itemSpacing": 8.0
+                            },
+                            {
+                                "name": "Profill",
+                                "type": "RECTANGLE",
+                                "fills": [
+                                    {
+                                        "type": "IMAGE",
+                                        "scaleMode": "FILL",
+                                        "imageRef": "9b76706a6ff04d2c5ee05f69f07eda85ba8c1846"
+                                    }
+                                ],
+                                "cornerRadius": 60.0,
+                                "preserveRatio": true,
+                                "exportSettings": [
+                                    {
+                                        "suffix": "",
+                                        "format": "PNG",
+                                        "constraint": {
+                                            "type": "SCALE",
+                                            "value": 1.0
+                                        }
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "We are very happy with the service from the MORENT App. Morent has a low price and also a large variety of cars with good and comfortable facilities. In addition, the service provided by the officers is also very friendly and very polite.",
+                                "fills": [
+                                    {
+                                        "color": "#596780"
+                                    }
+                                ],
+                                "strokeAlign": "OUTSIDE",
+                                "characters": "We are very happy with the service from the MORENT App. Morent has a low price and also a large variety of cars with good and comfortable facilities. In addition, the service provided by the officers is also very friendly and very polite.",
+                                "style": {
+                                    "fontFamily": "Plus Jakarta Sans",
+                                    "fontPostScriptName": "PlusJakartaSans-Regular",
+                                    "fontStyle": "Regular",
+                                    "fontWeight": 400,
+                                    "paragraphSpacing": 6.0,
+                                    "textAutoResize": "HEIGHT",
+                                    "fontSize": 14.0,
+                                    "textAlignHorizontal": "LEFT",
+                                    "textAlignVertical": "TOP",
+                                    "letterSpacing": -0.28,
+                                    "lineHeightPx": 28.0,
+                                    "lineHeightPercent": 158.73,
+                                    "lineHeightPercentFontSize": 200.0,
+                                    "lineHeightUnit": "FONT_SIZE_%"
+                                }
+                            }
+                        ],
+                        "rectangleCornerRadii": [
+                            0.0,
+                            0.0,
+                            0.0,
+                            0.0
+                        ],
+                        "backgroundColor": "#000000"
+                    },
+                    {
+                        "name": "Reviews 2",
+                        "type": "GROUP",
+                        "children": [
+                            {
+                                "name": "Name",
+                                "children": [
+                                    {
+                                        "name": "Skylar Dias",
+                                        "fills": [
+                                            {
+                                                "color": "#1A202C"
+                                            }
+                                        ],
+                                        "strokeAlign": "OUTSIDE",
+                                        "characters": "Skylar Dias",
+                                        "style": {
+                                            "fontFamily": "Plus Jakarta Sans",
+                                            "fontPostScriptName": "PlusJakartaSans-Bold",
+                                            "fontStyle": "Bold",
+                                            "fontWeight": 700,
+                                            "fontSize": 20.0,
+                                            "textAlignHorizontal": "LEFT",
+                                            "textAlignVertical": "CENTER",
+                                            "letterSpacing": -0.6,
+                                            "lineHeightPx": 30.0,
+                                            "lineHeightPercent": 119.05,
+                                            "lineHeightPercentFontSize": 150.0,
+                                            "lineHeightUnit": "FONT_SIZE_%"
+                                        }
+                                    },
+                                    {
+                                        "name": "CEO at Amazon",
+                                        "fills": [
+                                            {
+                                                "color": "#90A3BF"
+                                            }
+                                        ],
+                                        "strokeAlign": "OUTSIDE",
+                                        "characters": "CEO at Amazon",
+                                        "style": {
+                                            "fontFamily": "Plus Jakarta Sans",
+                                            "fontPostScriptName": "PlusJakartaSans-Medium",
+                                            "fontStyle": "Medium",
+                                            "fontWeight": 500,
+                                            "fontSize": 14.0,
+                                            "textAlignHorizontal": "LEFT",
+                                            "textAlignVertical": "CENTER",
+                                            "letterSpacing": -0.28,
+                                            "lineHeightPx": 21.0,
+                                            "lineHeightPercent": 119.05,
+                                            "lineHeightPercentFontSize": 150.0,
+                                            "lineHeightUnit": "FONT_SIZE_%"
+                                        }
+                                    }
+                                ],
+                                "backgroundColor": "#000000",
+                                "itemSpacing": 8.0
+                            },
+                            {
+                                "name": "Date",
+                                "children": [
+                                    {
+                                        "name": "20 July 2022",
+                                        "fills": [
+                                            {
+                                                "color": "#90A3BF"
+                                            }
+                                        ],
+                                        "strokeAlign": "OUTSIDE",
+                                        "characters": "20 July 2022",
+                                        "style": {
+                                            "fontFamily": "Plus Jakarta Sans",
+                                            "fontPostScriptName": "PlusJakartaSans-Medium",
+                                            "fontStyle": "Medium",
+                                            "fontWeight": 500,
+                                            "fontSize": 14.0,
+                                            "textAlignHorizontal": "RIGHT",
+                                            "textAlignVertical": "CENTER",
+                                            "letterSpacing": -0.28,
+                                            "lineHeightPx": 21.0,
+                                            "lineHeightPercent": 119.05,
+                                            "lineHeightPercentFontSize": 150.0,
+                                            "lineHeightUnit": "FONT_SIZE_%"
+                                        }
+                                    },
+                                    {
+                                        "name": "Reviews",
+                                        "children": [
+                                            {
+                                                "name": "ic-actions-star",
+                                                "type": "INSTANCE",
+                                                "componentId": "0:3",
+                                                "overrides": [
+                                                    {
+                                                        "overriddenFields": [
+                                                            "strokeWeight",
+                                                            "inheritFillStyleId",
+                                                            "fills",
+                                                            "strokes"
+                                                        ]
+                                                    },
+                                                    {
+                                                        "overriddenFields": [
+                                                            "height",
+                                                            "width"
+                                                        ]
+                                                    }
+                                                ],
+                                                "children": [
+                                                    {
+                                                        "name": "Layer",
+                                                        "type": "GROUP",
+                                                        "children": [
+                                                            {
+                                                                "name": "Vector",
+                                                                "type": "VECTOR",
+                                                                "fills": [
+                                                                    {
+                                                                        "color": "#FBAD39"
+                                                                    }
+                                                                ],
+                                                                "strokeWeight": 1.5,
+                                                                "strokeJoin": "ROUND",
+                                                                "strokeCap": "ROUND"
+                                                            }
+                                                        ],
+                                                        "backgroundColor": "#000000"
+                                                    }
+                                                ],
+                                                "background": [
+                                                    {
+                                                        "color": "#FFFFFF"
+                                                    }
+                                                ],
+                                                "fills": [
+                                                    {
+                                                        "color": "#FFFFFF"
+                                                    }
+                                                ],
+                                                "backgroundColor": "#000000"
+                                            },
+                                            {
+                                                "name": "ic-actions-star",
+                                                "type": "INSTANCE",
+                                                "componentId": "0:3",
+                                                "overrides": [
+                                                    {
+                                                        "overriddenFields": [
+                                                            "strokeWeight",
+                                                            "inheritFillStyleId",
+                                                            "fills",
+                                                            "strokes"
+                                                        ]
+                                                    },
+                                                    {
+                                                        "overriddenFields": [
+                                                            "height",
+                                                            "width"
+                                                        ]
+                                                    }
+                                                ],
+                                                "children": [
+                                                    {
+                                                        "name": "Layer",
+                                                        "type": "GROUP",
+                                                        "children": [
+                                                            {
+                                                                "name": "Vector",
+                                                                "type": "VECTOR",
+                                                                "fills": [
+                                                                    {
+                                                                        "color": "#FBAD39"
+                                                                    }
+                                                                ],
+                                                                "strokeWeight": 1.5,
+                                                                "strokeJoin": "ROUND",
+                                                                "strokeCap": "ROUND"
+                                                            }
+                                                        ],
+                                                        "backgroundColor": "#000000"
+                                                    }
+                                                ],
+                                                "background": [
+                                                    {
+                                                        "color": "#FFFFFF"
+                                                    }
+                                                ],
+                                                "fills": [
+                                                    {
+                                                        "color": "#FFFFFF"
+                                                    }
+                                                ],
+                                                "backgroundColor": "#000000"
+                                            },
+                                            {
+                                                "name": "ic-actions-star",
+                                                "type": "INSTANCE",
+                                                "componentId": "0:3",
+                                                "overrides": [
+                                                    {
+                                                        "overriddenFields": [
+                                                            "strokeWeight",
+                                                            "inheritFillStyleId",
+                                                            "fills",
+                                                            "strokes"
+                                                        ]
+                                                    },
+                                                    {
+                                                        "overriddenFields": [
+                                                            "height",
+                                                            "width"
+                                                        ]
+                                                    }
+                                                ],
+                                                "children": [
+                                                    {
+                                                        "name": "Layer",
+                                                        "type": "GROUP",
+                                                        "children": [
+                                                            {
+                                                                "name": "Vector",
+                                                                "type": "VECTOR",
+                                                                "fills": [
+                                                                    {
+                                                                        "color": "#FBAD39"
+                                                                    }
+                                                                ],
+                                                                "strokeWeight": 1.5,
+                                                                "strokeJoin": "ROUND",
+                                                                "strokeCap": "ROUND"
+                                                            }
+                                                        ],
+                                                        "backgroundColor": "#000000"
+                                                    }
+                                                ],
+                                                "background": [
+                                                    {
+                                                        "color": "#FFFFFF"
+                                                    }
+                                                ],
+                                                "fills": [
+                                                    {
+                                                        "color": "#FFFFFF"
+                                                    }
+                                                ],
+                                                "backgroundColor": "#000000"
+                                            },
+                                            {
+                                                "name": "ic-actions-star",
+                                                "type": "INSTANCE",
+                                                "componentId": "0:3",
+                                                "overrides": [
+                                                    {
+                                                        "overriddenFields": [
+                                                            "strokeWeight",
+                                                            "inheritFillStyleId",
+                                                            "fills",
+                                                            "strokes"
+                                                        ]
+                                                    },
+                                                    {
+                                                        "overriddenFields": [
+                                                            "height",
+                                                            "width"
+                                                        ]
+                                                    }
+                                                ],
+                                                "children": [
+                                                    {
+                                                        "name": "Layer",
+                                                        "type": "GROUP",
+                                                        "children": [
+                                                            {
+                                                                "name": "Vector",
+                                                                "type": "VECTOR",
+                                                                "fills": [
+                                                                    {
+                                                                        "color": "#FBAD39"
+                                                                    }
+                                                                ],
+                                                                "strokeWeight": 1.5,
+                                                                "strokeJoin": "ROUND",
+                                                                "strokeCap": "ROUND"
+                                                            }
+                                                        ],
+                                                        "backgroundColor": "#000000"
+                                                    }
+                                                ],
+                                                "background": [
+                                                    {
+                                                        "color": "#FFFFFF"
+                                                    }
+                                                ],
+                                                "fills": [
+                                                    {
+                                                        "color": "#FFFFFF"
+                                                    }
+                                                ],
+                                                "backgroundColor": "#000000"
+                                            },
+                                            {
+                                                "name": "ic-actions-star",
+                                                "type": "INSTANCE",
+                                                "componentId": "0:3",
+                                                "overrides": [
+                                                    {
+                                                        "overriddenFields": [
+                                                            "strokeWeight",
+                                                            "strokes"
+                                                        ]
+                                                    },
+                                                    {
+                                                        "overriddenFields": [
+                                                            "height",
+                                                            "width"
+                                                        ]
+                                                    }
+                                                ],
+                                                "children": [
+                                                    {
+                                                        "name": "Layer",
+                                                        "type": "GROUP",
+                                                        "children": [
+                                                            {
+                                                                "name": "Vector",
+                                                                "type": "VECTOR",
+                                                                "strokes": [
+                                                                    {
+                                                                        "color": "#90A3BF"
+                                                                    }
+                                                                ],
+                                                                "strokeWeight": 1.5,
+                                                                "strokeJoin": "ROUND",
+                                                                "strokeCap": "ROUND"
+                                                            }
+                                                        ],
+                                                        "backgroundColor": "#000000"
+                                                    }
+                                                ],
+                                                "background": [
+                                                    {
+                                                        "color": "#FFFFFF"
+                                                    }
+                                                ],
+                                                "fills": [
+                                                    {
+                                                        "color": "#FFFFFF"
+                                                    }
+                                                ],
+                                                "backgroundColor": "#000000"
+                                            }
+                                        ],
+                                        "backgroundColor": "#000000",
+                                        "itemSpacing": 2.0
+                                    }
+                                ],
+                                "backgroundColor": "#000000",
+                                "itemSpacing": 8.0
+                            },
+                            {
+                                "name": "We are greatly helped by the services of the MORENT Application. Morent has low prices and also a wide variety of cars with good and comfortable facilities. In addition, the service provided by the officers is also very friendly and very polite.",
+                                "fills": [
+                                    {
+                                        "color": "#596780"
+                                    }
+                                ],
+                                "strokeAlign": "OUTSIDE",
+                                "characters": "We are greatly helped by the services of the MORENT Application. Morent has low prices and also a wide variety of cars with good and comfortable facilities. In addition, the service provided by the officers is also very friendly and very polite.",
+                                "style": {
+                                    "fontFamily": "Plus Jakarta Sans",
+                                    "fontPostScriptName": "PlusJakartaSans-Regular",
+                                    "fontStyle": "Regular",
+                                    "fontWeight": 400,
+                                    "paragraphSpacing": 6.0,
+                                    "textAutoResize": "HEIGHT",
+                                    "fontSize": 14.0,
+                                    "textAlignHorizontal": "LEFT",
+                                    "textAlignVertical": "TOP",
+                                    "letterSpacing": -0.28,
+                                    "lineHeightPx": 28.0,
+                                    "lineHeightPercent": 158.73,
+                                    "lineHeightPercentFontSize": 200.0,
+                                    "lineHeightUnit": "FONT_SIZE_%"
+                                }
+                            },
+                            {
+                                "name": "Profill",
+                                "type": "RECTANGLE",
+                                "fills": [
+                                    {
+                                        "type": "IMAGE",
+                                        "scaleMode": "FILL",
+                                        "imageRef": "1f592390d69545d7cf9ff5be12e2248ebf54993a"
+                                    }
+                                ],
+                                "cornerRadius": 60.0,
+                                "preserveRatio": true,
+                                "exportSettings": [
+                                    {
+                                        "suffix": "",
+                                        "format": "PNG",
+                                        "constraint": {
+                                            "type": "SCALE",
+                                            "value": 1.0
+                                        }
+                                    }
+                                ]
+                            }
+                        ],
+                        "rectangleCornerRadii": [
+                            0.0,
+                            0.0,
+                            0.0,
+                            0.0
+                        ],
+                        "backgroundColor": "#000000"
+                    },
+                    {
+                        "name": "Show All",
+                        "children": [
+                            {
+                                "name": "Show All",
+                                "fills": [
+                                    {
+                                        "color": "#90A3BF"
+                                    }
+                                ],
+                                "strokeAlign": "OUTSIDE",
+                                "characters": "Show All",
+                                "style": {
+                                    "fontFamily": "Plus Jakarta Sans",
+                                    "fontPostScriptName": "PlusJakartaSans-SemiBold",
+                                    "fontStyle": "SemiBold",
+                                    "fontWeight": 600,
+                                    "fontSize": 16.0,
+                                    "textAlignHorizontal": "CENTER",
+                                    "textAlignVertical": "CENTER",
+                                    "letterSpacing": -0.32,
+                                    "lineHeightPx": 24.0,
+                                    "lineHeightPercent": 119.05,
+                                    "lineHeightPercentFontSize": 150.0,
+                                    "lineHeightUnit": "FONT_SIZE_%"
+                                }
+                            },
+                            {
+                                "name": "vuesax/outline/arrow-down",
+                                "type": "INSTANCE",
+                                "componentId": "0:6",
+                                "overrides": [
+                                    {
+                                        "overriddenFields": [
+                                            "height",
+                                            "width"
+                                        ]
+                                    },
+                                    {
+                                        "overriddenFields": [
+                                            "strokeWeight",
+                                            "fills",
+                                            "inheritFillStyleId",
+                                            "strokeAlign",
+                                            "strokes"
+                                        ]
+                                    }
+                                ],
+                                "children": [
+                                    {
+                                        "name": "vuesax/outline/arrow-down",
+                                        "type": "GROUP",
+                                        "children": [
+                                            {
+                                                "name": "arrow-down",
+                                                "type": "GROUP",
+                                                "children": [
+                                                    {
+                                                        "name": "Vector",
+                                                        "type": "VECTOR",
+                                                        "fills": [
+                                                            {
+                                                                "color": "#90A3BF"
+                                                            }
+                                                        ],
+                                                        "strokes": [
+                                                            {
+                                                                "color": "#90A3BF"
+                                                            }
+                                                        ],
+                                                        "strokeWeight": 0.5
+                                                    },
+                                                    {
+                                                        "name": "Vector",
+                                                        "type": "VECTOR",
+                                                        "opacity": 0.0
+                                                    }
+                                                ],
+                                                "backgroundColor": "#000000"
+                                            }
+                                        ],
+                                        "backgroundColor": "#000000"
+                                    }
+                                ],
+                                "background": [
+                                    {
+                                        "color": "#FFFFFF"
+                                    }
+                                ],
+                                "fills": [
+                                    {
+                                        "color": "#FFFFFF"
+                                    }
+                                ],
+                                "backgroundColor": "#000000"
+                            }
+                        ],
+                        "cornerRadius": 4.0,
+                        "strokeWeight": 2.0,
+                        "backgroundColor": "#000000",
+                        "itemSpacing": 8.0,
+                        "primaryAxisAlignItems": "CENTER",
+                        "paddingLeft": 20.0,
+                        "paddingRight": 20.0,
+                        "constraints": {
+                            "vertical": "TOP",
+                            "horizontal": "RIGHT"
+                        }
+                    }
+                ],
+                "background": [
+                    {
+                        "color": "#FFFFFF"
+                    }
+                ],
+                "fills": [
+                    {
+                        "color": "#FFFFFF"
+                    }
+                ],
+                "cornerRadius": 10.0,
+                "backgroundColor": "#FFFFFF"
+            }
+        }
+    }
+}

@@ -11,7 +11,7 @@ global figma_url
 
 route = "playground"
 base_dir = "../samplereactproject/app/"+route
-figma_url = "https://www.figma.com/design/Q1nZ4assLAHsrKaHlBf5Po/Untitled?node-id=0-20&t=syI41ftZyxejLkVe-0"
+figma_url = "https://www.figma.com/design/Q1nZ4assLAHsrKaHlBf5Po/Untitled?node-id=4-33&t=0BGMjrypRNHD96Bo-0"
 device = "web"
 client = OpenAI()
 
@@ -24,12 +24,7 @@ global chat_history
 
 # Main workflow
 if __name__ == "__main__":
-    try:
-        requests.get(URL).status_code == 200
-    except requests.ConnectionError:
-        #logging.error("Development server is not running. Exiting.")
-        exit(1)
-
+    
     chat_history = []
 
     file_key, node_id = parse_figma_url(figma_url)
@@ -63,13 +58,16 @@ if __name__ == "__main__":
             print("Feedback has been found, press y to use it")
             if input() != "y":
                 feedback = ""
+            else:
+                with open('feedback.txt', 'r') as f:
+                    feedback = f.read()
 
     for iteration in range(MAX_ITERATIONS):
         code = write_code("./reference/reference.png", process_json(figma_data), feedback, "", URL, [])
         
         #feedback = test_UI(URL, SCREENSHOT_PATH, device=device)
-        with open('feedback.txt', 'w') as f:
-            f.write(feedback)
+        #with open('feedback.txt', 'w') as f:
+            #f.write(feedback)
         print("waiting for feedback changes")
         with open('feedback.txt', 'r') as f:
             feedback = f.read()
